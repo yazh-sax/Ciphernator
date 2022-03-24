@@ -5,40 +5,16 @@
     <title></title>
   </head>
   <body>
-    <form action="index.html" method="post">
-      <label for="messageInput">Enter your message:</label>
-      <input type="text" id="messageInput"><br><br>
-      <label for="shiftInput">Enter your shift amount:</label>
-      <input type="number" id="shiftInput"><br><br>
-      <button type="button" value="Encrypt" onclick="doWork()"></button>
-    </form>
+    <script src="ciphernator.js"></script>
 
-    <script type="text/javascript">
-      function doWork() {
-        var encryptMessage = caesarEncrypt(getElementById(messageInput), getElementById(shiftInput))
-        document.write(encryptMessage)
-      }
-      function caesarEncrypt(message, shift) {
-        var encryptedMessage = ""
-        message = message.toLowerCase();
-        shift = shift % 26
-        for(var i = 0; i < message.length; i++){
-//          document.write(message[i] + "<br>")
-            var newLetter = message[i]
-            var letterCode = message[i].charCodeAt(0)
-            if (letterCode >= 97 && letterCode <= 122){
-              letterCode = letterCode + shift
-              if (letterCode > 122){
-                letterCode = letterCode - 26
-              }
-              if (letterCode < 97){
-                letterCode = letterCode + 26
-              }
-            }
-            encryptedMessage = encryptedMessage + String.fromCharCode(letterCode);
-          }
-      return (encryptedMessage)
-    }
-    </script>
+    <label>Enter your message:</label>
+    <input type="text" id="messageInput"><br><br>
+    <label>Enter your shift amount:</label>
+    <input type="number" id="shiftInput"><br><br>
+    <button type="button" onclick="displayEncrypt()">Encrypt</button>
+    <button type="button" onclick="displayDecrypt()">Decrypt</button>
+
+    <div id="output"></div>
+
   </body>
 </html>
