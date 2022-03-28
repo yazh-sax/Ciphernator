@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <label>Enter your message:</label>
+    <input type="text" id="encryptMessageInput"><br><br>
+    <!-- <label>Enter your shift amount:</label>
+    <input type="number" id="shiftInput"><br><br> -->
+    <button type="button" onclick="monoalphabeticEncrypt(message)">Encrypt</button>
+
+    <script type="text/javascript">
+      var message = document.getElementById("encryptMessageInput").value
+
+      function generateKey() {
+        var letterList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        var key = []
+        var randomGen = 0
+        while (letterList.length > 0) {
+          randomGen = Math.floor(Math.random() * letterList.length)
+          key.push(letterList[randomGen])
+          letterList.splice(randomGen, 1)
+        }
+        return key
+      }
+
+      function monoalphabeticEncrypt(message) {
+        var key = generateKey()
+        var letterList2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        message.toLowerCase()
+        var newMessage = ''
+        for (let i = 0; i < message.length; i++) {
+          for (let j = 0; j < letterList2.length; j++) {
+            if (message.charAt(i) == letterList2[j]) {
+              newMessage += key[j]
+            }
+          }
+        }
+        console.log(newMessage)
+      document.write(newMessage + "<br>" + key.join(''))
+      return [newMessage, key.join(""), letterList2]
+    }
+
+    function monoalphabeticDecrypt(message) {
+      var monoencryptedMessage = monoalphabeticEncrypt(message)[0]
+      var key = monoalphabeticEncrypt(message)[1].split("")
+      var lettList = monoalphabeticEncrypt(message)[2]
+      var oldMessage = ""
+      for (let i = 0; i < message.length; i++) {
+        for (let j = 0; j < lettList.length; j++) {
+          if (message.charAt(i) == key[j]) {
+            oldMessage += lettList[j]
+          }
+        }
+      }
+      return oldMessage
+    }
+
+    </script>
+  </body>
+</html>
