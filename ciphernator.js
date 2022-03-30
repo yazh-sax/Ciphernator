@@ -62,3 +62,48 @@ function caesarBreak(message) {
   }
   return(caesarDecrypt(message, shift))
 }
+
+function generateKey() {
+  var letterList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  var key = []
+  var randomGen = 0
+  while (letterList.length > 0) {
+    randomGen = Math.floor(Math.random() * letterList.length)
+    key.push(letterList[randomGen])
+    letterList.splice(randomGen, 1)
+  }
+  return key
+}
+
+function monoalphabeticEncrypt() {
+  var message = document.getElementById("encryptMessageInput").value
+  var key = generateKey()
+  var letterList2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  message = message.toLowerCase()
+  var newMessage = ''
+  for (let i = 0; i < message.length; i++) {
+    for (let j = 0; j < letterList2.length; j++) {
+      if (message.charAt(i) == letterList2[j]) {
+        newMessage += key[j]
+      }
+    }
+  }
+document.write(newMessage + "<br>")
+document.write(key.join(""))
+return [newMessage, key.join(""), letterList2]
+}
+
+function monoalphabeticDecrypt(message) {
+var monoencryptedMessage = monoalphabeticEncrypt(message)[0]
+var key = monoalphabeticEncrypt(message)[1].split("")
+var lettList = monoalphabeticEncrypt(message)[2]
+var oldMessage = ""
+for (let i = 0; i < message.length; i++) {
+  for (let j = 0; j < lettList.length; j++) {
+    if (message.charAt(i) == key[j]) {
+      oldMessage += lettList[j]
+    }
+  }
+}
+return oldMessage
+}
