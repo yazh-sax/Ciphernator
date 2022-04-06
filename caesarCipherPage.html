@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="ciphernator.js"></script>
+
+    <label>Enter your message:</label>
+    <input type="text" id="messageInput"><br><br>
+    <label>Enter your shift amount:</label>
+    <input type="number" id="shiftInput"><br><br>
+    <button type="button" onclick="displayEncrypt()">Encrypt</button>
+    <button type="button" onclick="displayDecrypt()">Decrypt</button>
+    <br><br>
+    <label>Enter a caesar cipher encrypted message to break the encryption:</label>
+    <input type="text" id="breakInput"><br><br>
+    <button type="button" onclick="displayBreak()">Break Encryption</button>
+    <div id="output"></div>
+
+  </body>
+</html>
