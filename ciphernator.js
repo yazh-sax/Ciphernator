@@ -87,28 +87,35 @@ function monoalphabeticEncrypt() {
   message = message.toLowerCase()
   var newMessage = ''
   for (let i = 0; i < message.length; i++) {
-    for (let j = 0; j < letterList2.length; j++) {
-      if (message.charAt(i) == letterList2[j]) {
-        newMessage += key[j]
+    if (message.charAt(i) >= "a" && message.charAt(i) <= "z") {
+      for (let j = 0; j < letterList2.length; j++) {
+        if (message.charAt(i) == letterList2[j]) {
+          newMessage += key[j]
+        }
       }
     }
+    else
+      newMessage += message.charAt(i)
   }
-document.write(newMessage + "<br>")
-document.write(key.join(""))
-return [newMessage, key.join(""), letterList2]
+  document.getElementById("output").innerHTML = newMessage + "<br>" + key.join("")
+  return [newMessage, key, letterList2]
 }
 
-function monoalphabeticDecrypt(message) {
-var monoencryptedMessage = monoalphabeticEncrypt(message)[0]
-var key = monoalphabeticEncrypt(message)[1].split("")
-var lettList = monoalphabeticEncrypt(message)[2]
-var oldMessage = ""
-for (let i = 0; i < message.length; i++) {
-  for (let j = 0; j < lettList.length; j++) {
-    if (message.charAt(i) == key[j]) {
-      oldMessage += lettList[j]
+function monoalphabeticDecrypt() {
+  var monoencryptedMessage = document.getElementById("decryptMessageInput").value
+  var key = document.getElementById("decryptMessageKeyInput").value.split("")
+  var lettList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  var oldMessage = ""
+  for (let i = 0; i < monoencryptedMessage.length; i++) {
+    if (monoencryptedMessage.charAt(i) >= "a" && monoencryptedMessage.charAt(i) <= "z") {
+      for (let j = 0; j < lettList.length; j++) {
+        if (monoencryptedMessage.charAt(i) == key[j]) {
+          oldMessage += lettList[j]
+        }
+      }
     }
+    else
+      oldMessage += monoencryptedMessage.charAt(i)
   }
-}
-return oldMessage
+  document.getElementById("output").innerHTML = oldMessage
 }
