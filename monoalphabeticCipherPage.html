@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
   </head>
   <body>
 
+    <script src="ciphernator.js"></script>
     <label>Enter your message:</label>
     <input type="text" id="encryptMessageInput"><br><br>
-    <!-- <label>Enter your shift amount:</label>
-    <input type="number" id="shiftInput"><br><br> -->
+    <label>Enter your encrypted message here:</label>
+    <input type="text" id="decryptMessageInput"><br><br>
+    <label>Enter your encrypted message key here:</label>
+    <input type="text" id="decryptMessageKeyInput"><br><br>
     <button type="button" onclick="monoalphabeticEncrypt()">Encrypt</button>
-    <script src="ciphernator.js"></script>
+    <button type="button" onclick="monoalphabeticDecrypt()">Decrypt</button>
+    <br><br>
+    <div id="output"></div>
+
   </body>
 </html>
