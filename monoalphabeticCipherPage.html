@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="ciphernator.js"></script>
     <label>Enter your message:</label>
-    <input type="text" id="encryptMessageInput"><br><br>
+    <input type="text" id="messageInput"><br><br>
     <label>Enter your encrypted message here:</label>
     <input type="text" id="decryptMessageInput"><br><br>
     <label>Enter your encrypted message key here:</label>
     <input type="text" id="decryptMessageKeyInput"><br><br>
-    <button type="button" onclick="monoalphabeticEncrypt()">Encrypt</button>
-    <button type="button" onclick="monoalphabeticDecrypt()">Decrypt</button>
+    <button type="button" onclick="displayEncrypt('monoalphabeticEncrypt')">Encrypt</button>
+    <button type="button" onclick="displayDecrypt('monoalphabeticDecrypt')">Decrypt</button>
     <br><br>
     <div id="output"></div>
 
