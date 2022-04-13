@@ -1,0 +1,35 @@
+#indexButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#titleText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(119, 113, 113);
+    border-radius: 30px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #111;
+  }
