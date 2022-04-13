@@ -12,15 +12,17 @@
       <li><a href="">About</a></li>
     </ul>
     <br><br>
-    <link rel="stylesheet" href="style.css">
-    <label>Enter your message:</label>
-    <input type="text" id="messageInput"><br><br>
-    <label>Enter your shift amount:</label>
+    <link rel="stylesheet" href="style.css">   
+    <textarea name="mInput" id="messageInput" cols="70" rows="10">Enter your message</textarea>
+    <!--<input type="text" id="messageInput">-->
+    
+    <br><br>
+    <label>Shift:</label>
     <input type="number" id="shiftInput"><br><br>
     <button type="button" onclick="displayEncrypt()">Encrypt</button>
     <button type="button" onclick="displayDecrypt()">Decrypt</button>
     <br><br>
-    <label>Enter a caesar cipher encrypted message to break the encryption:</label>
+    <label>Break Encryped Message (no shift required):</label>
     <input type="text" id="breakInput"><br><br>
     <button type="button" onclick="displayBreak()">Break Encryption</button>
     <div id="output"></div>
