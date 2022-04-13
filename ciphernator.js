@@ -29,21 +29,6 @@ function caesarDecrypt(message, shift) {
   return(caesarEncrypt(message, shift))
 }
 
-function displayEncrypt() {
-  var encryptMessage = caesarEncrypt(document.getElementById("messageInput").value, document.getElementById("shiftInput").value)
-  document.getElementById("output").innerHTML = encryptMessage
-}
-
-function displayDecrypt() {
-  var decryptMessage = caesarDecrypt(document.getElementById("messageInput").value, document.getElementById("shiftInput").value)
-  document.getElementById("output").innerHTML = decryptMessage
-}
-
-function displayBreak() {
-  var breakMessage = caesarBreak(document.getElementById("breakInput").value)
-  document.getElementById("output").innerHTML = breakMessage
-}
-
 function caesarBreak(message) {
   var wordBank = generateWords()
   var shift = 0
@@ -80,8 +65,7 @@ function generateKey() {
   return key
 }
 
-function monoalphabeticEncrypt() {
-  var message = document.getElementById("encryptMessageInput").value
+function monoalphabeticEncrypt(message, shift) {
   var key = generateKey()
   var letterList2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   message = message.toLowerCase()
@@ -97,13 +81,10 @@ function monoalphabeticEncrypt() {
     else
       newMessage += message.charAt(i)
   }
-  document.getElementById("output").innerHTML = newMessage + "<br>" + key.join("")
-  return [newMessage, key, letterList2]
+  return newMessage + "<br><br>" + key.join("")
 }
 
-function monoalphabeticDecrypt() {
-  var monoencryptedMessage = document.getElementById("decryptMessageInput").value
-  var key = document.getElementById("decryptMessageKeyInput").value.split("")
+function monoalphabeticDecrypt(monoencryptedMessage, key) {
   var lettList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   var oldMessage = ""
   for (let i = 0; i < monoencryptedMessage.length; i++) {
@@ -117,5 +98,94 @@ function monoalphabeticDecrypt() {
     else
       oldMessage += monoencryptedMessage.charAt(i)
   }
-  document.getElementById("output").innerHTML = oldMessage
+  return oldMessage
+}
+
+function dateShiftEncrypt(message, date) {
+  date = date.substring(0,4) + date.substring(5,7) + date.substring(8,10)
+  date = date.split("")
+  var newMessage = ""
+  var counter = 0
+  message = message.toLowerCase()
+  for (let i = 0; i < message.length; i++) {
+    if (message.charAt(i) >= "a" && message.charAt(i) <= "z") {
+      counter = counter % 8
+      var letterCode = message[i].charCodeAt(0)
+      if (letterCode >= 97 && letterCode <= 122){
+        letterCode = letterCode + parseInt(date[counter])
+        if (letterCode > 122){
+          letterCode = letterCode - 26
+        }
+        if (letterCode < 97){
+          letterCode = letterCode + 26
+        }
+      }
+      counter++
+      newMessage += String.fromCharCode(letterCode);
+    }
+    else {
+      newMessage += message.charAt(i)
+    }
+  }
+  return newMessage
+}
+
+function dateShiftDecrypt(encryptedMessage, date) {
+  date = date.substring(0,4) + date.substring(5,7) + date.substring(8,10)
+  date = date.split("")
+  var oldMessage = ""
+  var counter = 0
+  encryptedMessage = encryptedMessage.toLowerCase()
+  for (let i = 0; i < encryptedMessage.length; i++) {
+    if (encryptedMessage.charAt(i) >= "a" && encryptedMessage.charAt(i) <= "z") {
+      counter = counter % 8
+      var letterCode = encryptedMessage[i].charCodeAt(0)
+      if (letterCode >= 97 && letterCode <= 122){
+        letterCode = letterCode - parseInt(date[counter])
+        if (letterCode > 122){
+          letterCode = letterCode - 26
+        }
+        if (letterCode < 97){
+          letterCode = letterCode + 26
+        }
+      }
+      counter++
+      oldMessage += String.fromCharCode(letterCode);
+    }
+    else {
+      oldMessage += encryptedMessage.charAt(i)
+    }
+  }
+  return oldMessage
+}
+
+function displayEncrypt(cipherName) {
+  var encryptMessage = null
+  if (cipherName == 'caesarEncrypt') {
+    encryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("shiftInput").value)
+  }
+  else if (cipherName == 'dateShiftEncrypt') {
+    encryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("dateMessageInput").value)
+  }
+  else
+    encryptMessage = window[cipherName](document.getElementById("messageInput").value)
+  document.getElementById("output").innerHTML = encryptMessage
+}
+
+function displayDecrypt(cipherName) {
+  var decryptMessage = null
+  if (cipherName == 'monoalphabeticDecrypt') {
+    decryptMessage = window[cipherName](document.getElementById("decryptMessageInput").value, document.getElementById("decryptMessageKeyInput").value)
+  }
+  else if (cipherName == 'dateShiftDecrypt') {
+    decryptMessage = window[cipherName](document.getElementById("decryptMessageInput").value, document.getElementById("dateMessageInput").value)
+  }
+  else
+    decryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("shiftInput").value)
+  document.getElementById("output").innerHTML = decryptMessage
+}
+
+function displayBreak() {
+  var breakMessage = caesarBreak(document.getElementById("breakInput").value)
+  document.getElementById("output").innerHTML = breakMessage
 }
