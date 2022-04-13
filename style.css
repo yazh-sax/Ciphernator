@@ -8,13 +8,37 @@
     justify-content: center;
     align-items: center;
 }
+body {
+  color: rgb(250, 250, 250);
+  background-color: rgb(37, 38, 38);
+  font-family: Copperplate;
+}
+
+button {
+  font-family: Copperplate;
+  color: rgb(250, 250, 250);
+  background-color: rgb(176, 50, 50);
+  display:inline-block;
+  padding:0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:1000;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: rgb(176, 50, 50);
+}
 
 #navBar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(119, 113, 113);
+    background-color: rgb(193, 99, 99);
     border-radius: 30px;
   }
   
@@ -31,5 +55,5 @@
   }
   
   li a:hover {
-    background-color: #111;
+    background-color: rgb(176, 50, 50);
   }
