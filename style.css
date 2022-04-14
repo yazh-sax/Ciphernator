@@ -2,11 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
 }
 #titleText{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 30px;
 }
 body {
   color: rgb(250, 250, 250);
@@ -24,6 +26,8 @@ button {
   border-radius:2em;
   box-sizing: border-box;
   text-align:center;
+  border: none;
+  font-size: 20px;
 }
 
 #navBar {
@@ -50,3 +54,4 @@ button {
   li a:hover {
     background-color: rgb(176, 50, 50);
   }
+
