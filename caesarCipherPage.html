@@ -13,18 +13,24 @@
     </ul>
     <br><br>
     <link rel="stylesheet" href="style.css">   
-    <textarea name="mInput" id="messageInput" cols="70" rows="10" placeholder="Enter your message"></textarea>
-    <!--<input type="text" id="messageInput">-->
-    
+    <div id="basicCaesar">
+    <textarea name="mInput" id="messageInput" cols="50" rows="10" placeholder="Enter your message"></textarea>
     <br><br>
     <label>Shift:</label>
     <input type="number" id="shiftInput"><br><br>
     <button type="button" onclick="displayEncrypt('caesarEncrypt')">Encrypt</button>
     <button type="button" onclick="displayDecrypt('caesarDecrypt')">Decrypt</button>
-    <br><br>
+    </div>
+
+    <div id="breakCaesar">
     <label>Break Encryped Message (no shift required):</label>
-    <input type="text" id="breakInput"><br><br>
+    <br><br>
+    <textarea name="bInput" id="breakInput" cols="50" rows="10" placeholder="Enter your message"></textarea>
+    <br><br>
     <button type="button" onclick="displayBreak()">Break Encryption</button>
+    <br><br>
+    </div>
+
     <div id="output"></div>
 
   </body>
