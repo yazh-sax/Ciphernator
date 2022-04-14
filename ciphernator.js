@@ -159,6 +159,103 @@ function dateShiftDecrypt(encryptedMessage, date) {
   return oldMessage
 }
 
+function morseCodeEncrypt(message) {
+  var morseAlphabet = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-', '-.--', '--..']
+  var morseNumbers = ['-----', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.']
+  var morsedMessage = ''
+  message = message.toLowerCase()
+  for (let i = 0; i < message.length; i++) {
+    if (message.charAt(i) >= "a" && message.charAt(i) <= "z") {
+      var letterNum = message[i].charCodeAt(0) - 97
+      morsedMessage += morseAlphabet[letterNum] + ' '
+    }
+    else if (message.charAt(i) == ' ') {
+      morsedMessage += "/" + ' '
+    }
+    else if (message.charAt(i) >= "0" && message.charAt(i) <= "9") {
+      var letterNum = message[i].charCodeAt(0) - 48
+      morsedMessage += morseNumbers[letterNum] + ' '
+    }
+    else if (message.charAt(i) == ".") {
+      morsedMessage += '.-.-.-' + ' '
+    }
+    else if (message.charAt(i) == ",") {
+      morsedMessage += '--..--' + ' '
+    }
+    else if (message.charAt(i) == "-") {
+      morsedMessage += '-....-' + ' '
+    }
+    else if (message.charAt(i) == "?") {
+      morsedMessage += '..--..' + ' '
+    }
+    else if (message.charAt(i) == "/") {
+      morsedMessage += "-..-." + ' '
+    }
+    else if (message.charAt(i) == "!") {
+      morsedMessage += "-.-.--" + ' '
+    }
+    else {
+      morsedMessage += message.charAt(i)
+    }
+  }
+  return morsedMessage
+}
+
+function morseCodeDecrypt(message) {
+  var originalMessage = ''
+  var latestChar = [];
+  // message = message + " "
+  for (let i = 0; i < message.length; i++) {
+    if (message.charAt(i) == '/') {
+      originalMessage += ' '
+    }
+    else if (message.charAt(i) != '.' && message.charAt(i) != '-' && message.charAt(i) != ' ' && message.charAt(i) != '/') {
+      originalMessage += message.charAt(i)
+    }
+    else {
+      if (message.charAt(i) == ' ') {
+        if (latestChar.length == 0) continue;
+        var fullCode = latestChar.join('');
+        var lookupValue = findCharForMorseCode(fullCode);
+        originalMessage += lookupValue;
+        latestChar = [];
+      } else {
+        latestChar.push(message.charAt(i));
+      }
+    }
+  }
+  if (latestChar.length > 0) {
+    originalMessage += findCharForMorseCode(latestChar.join(''));
+  }
+
+  return originalMessage;
+}
+function findCharForMorseCode(fullCode) {
+  var morseAlphabet = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-', '-.--', '--..']
+  var morseNumbers = ['-----', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.']
+  if (fullCode == '.-.-.-') {
+    return '.'
+  }
+  if (fullCode == '-.-.--') {
+    return '!'
+  }
+  if (fullCode == '..--..') {
+    return '?'
+  }
+  if (fullCode == '--..--') {
+    return ','
+  }
+  for (let j = 0; j < morseAlphabet.length; j++)
+  if (morseAlphabet[j] == fullCode) {
+    return String.fromCharCode(97 + j);
+  }
+  for (let j = 0; j < morseNumbers.length; j++)
+    if (morseNumbers[j] == fullCode) {
+      return String.fromCharCode(48+j);
+    }
+  return "";
+}  
+
 function displayEncrypt(cipherName) {
   var encryptMessage = null
   if (cipherName == 'caesarEncrypt') {
@@ -169,7 +266,7 @@ function displayEncrypt(cipherName) {
   }
   else
     encryptMessage = window[cipherName](document.getElementById("messageInput").value)
-  document.getElementById("output").innerHTML = encryptMessage
+    document.getElementById("output").innerHTML = encryptMessage
 }
 
 function displayDecrypt(cipherName) {
@@ -180,9 +277,14 @@ function displayDecrypt(cipherName) {
   else if (cipherName == 'dateShiftDecrypt') {
     decryptMessage = window[cipherName](document.getElementById("decryptMessageInput").value, document.getElementById("dateMessageInput").value)
   }
-  else
+  else if (cipherName == 'caesarDecrypt') {
     decryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("shiftInput").value)
-  document.getElementById("output").innerHTML = decryptMessage
+    document.getElementById("output").innerHTML = decryptMessage
+  }
+  else {
+    decryptMessage = window[cipherName](document.getElementById("messageInput").value)
+    document.getElementById("output").innerHTML = decryptMessage
+  }
 }
 
 function displayBreak() {
