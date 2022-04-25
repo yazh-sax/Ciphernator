@@ -229,6 +229,7 @@ function morseCodeDecrypt(message) {
 
   return originalMessage;
 }
+
 function findCharForMorseCode(fullCode) {
   var morseAlphabet = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-', '-.--', '--..']
   var morseNumbers = ['-----', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.']
@@ -267,11 +268,15 @@ function displayEncrypt(cipherName) {
     var key = document.getElementById("decryptMessageKeyInput").value
     var chars = true
     for (var i = 0; i < key.length; i++) {
-      if (toUpperCase(key[i]) == toLowerCase(key[i]))
+      if (key[i].toUpperCase() == key[i].toLowerCase())
         chars = false
     }
-    if (key.length != 26 || Set(str).size != str.length || chars == false)
+    if (key.length != 26 || new Set(key).size != key.length || chars == false) {
       key = generateKey()
+    }
+    else {
+      key = key.split('')
+    }
     encryptMessage = window[cipherName](document.getElementById("messageInput").value, key)
   }
   else
