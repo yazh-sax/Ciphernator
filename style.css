@@ -30,6 +30,16 @@ button {
   font-size: 20px;
 }
 
+.descriptions {
+  float: left;
+  padding: 5%;
+}
+
+.ciphers {
+  float: left;
+  padding: 5%;
+}
+
 #navBar {
     list-style-type: none;
     margin: 0;

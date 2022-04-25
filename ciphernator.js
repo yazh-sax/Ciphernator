@@ -65,8 +65,7 @@ function generateKey() {
   return key
 }
 
-function monoalphabeticEncrypt(message, shift) {
-  var key = generateKey()
+function monoalphabeticEncrypt(message, key) {
   var letterList2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   message = message.toLowerCase()
   var newMessage = ''
@@ -264,15 +263,26 @@ function displayEncrypt(cipherName) {
   else if (cipherName == 'dateShiftEncrypt') {
     encryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("dateMessageInput").value)
   }
+  else if (cipherName == 'monoalphabeticEncrypt'){
+    var key = document.getElementById("decryptMessageKeyInput").value
+    var chars = true
+    for (var i = 0; i < key.length; i++) {
+      if (toUpperCase(key[i]) == toLowerCase(key[i]))
+        chars = false
+    }
+    if (key.length != 26 || Set(str).size != str.length || chars == false)
+      key = generateKey()
+    encryptMessage = window[cipherName](document.getElementById("messageInput").value, key)
+  }
   else
     encryptMessage = window[cipherName](document.getElementById("messageInput").value)
-    document.getElementById("output").innerHTML = encryptMessage
+  document.getElementById("output").innerHTML = encryptMessage
 }
 
 function displayDecrypt(cipherName) {
   var decryptMessage = null
   if (cipherName == 'monoalphabeticDecrypt') {
-    decryptMessage = window[cipherName](document.getElementById("decryptMessageInput").value, document.getElementById("decryptMessageKeyInput").value)
+    decryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("decryptMessageKeyInput").value)
   }
   else if (cipherName == 'dateShiftDecrypt') {
     decryptMessage = window[cipherName](document.getElementById("decryptMessageInput").value, document.getElementById("dateMessageInput").value)

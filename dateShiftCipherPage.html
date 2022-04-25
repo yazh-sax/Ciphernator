@@ -10,10 +10,12 @@
     </ul>
     <br><br>
     <link rel="stylesheet" href="style.css">
-    <textarea name="mInput" id="messageInput" cols="70" rows="10" placeholder="Enter your message"></textarea>
-    <br><br>
+    
 
     <script src="ciphernator.js"></script>
+    <div class="ciphers">
+    <textarea name="mInput" id="messageInput" cols="70" rows="10" placeholder="Enter your message"></textarea>
+    <br><br>
     <label>Enter your significant date:</label>
     <input type="date" id="dateMessageInput"><br><br>
     <label>Enter your encrypted message here:</label>
@@ -21,7 +23,9 @@
     <button type="button" onclick="displayEncrypt('dateShiftEncrypt')">Encrypt</button>
     <button type="button" onclick="displayDecrypt('dateShiftDecrypt')">Decrypt</button>
     <br><br>
+    </div>
     <div id="output"></div>
 
+    <div class="descriptions">This is a cool description</div>
   </body>
 </html>

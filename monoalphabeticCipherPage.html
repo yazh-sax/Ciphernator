@@ -10,16 +10,22 @@
     <br><br>
     <link rel="stylesheet" href="style.css">
     <script src="ciphernator.js"></script>
-    <label>Enter your message:</label>
-    <input type="text" id="messageInput"><br><br>
-    <label>Enter your encrypted message here:</label>
-    <input type="text" id="decryptMessageInput"><br><br>
-    <label>Enter your encrypted message key here:</label>
+    <div class="ciphers">
+
+    <textarea name="mInput" id="messageInput" cols="50" rows="10" placeholder="Enter your message"></textarea>
+    <br><br>
+  
+
+    <label>Enter encryption key:</label>
     <input type="text" id="decryptMessageKeyInput"><br><br>
+
     <button type="button" onclick="displayEncrypt('monoalphabeticEncrypt')">Encrypt</button>
     <button type="button" onclick="displayDecrypt('monoalphabeticDecrypt')">Decrypt</button>
     <br><br>
+
+    </div>
     <div id="output"></div>
 
+    <div class="descriptions">This is a cool description</div>
   </body>
 </html>
