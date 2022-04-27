@@ -296,10 +296,9 @@ function displayDecrypt(cipherName) {
     decryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("shiftInput").value)
     document.getElementById("output").innerHTML = decryptMessage
   }
-  else {
+  else 
     decryptMessage = window[cipherName](document.getElementById("messageInput").value)
-    document.getElementById("output").innerHTML = decryptMessage
-  }
+  document.getElementById("output").innerHTML = decryptMessage
 }
 
 function displayBreak() {
