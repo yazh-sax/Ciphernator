@@ -290,7 +290,7 @@ function displayDecrypt(cipherName) {
     decryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("decryptMessageKeyInput").value)
   }
   else if (cipherName == 'dateShiftDecrypt') {
-    decryptMessage = window[cipherName](document.getElementById("decryptMessageInput").value, document.getElementById("dateMessageInput").value)
+    decryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("dateMessageInput").value)
   }
   else if (cipherName == 'caesarDecrypt') {
     decryptMessage = window[cipherName](document.getElementById("messageInput").value, document.getElementById("shiftInput").value)
