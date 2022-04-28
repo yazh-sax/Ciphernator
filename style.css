@@ -62,16 +62,20 @@ button {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(193, 99, 99);
+    background-color: rgb(178, 68, 68);
     border-radius: 30px;
+  }
+  ul {
+    display: flex;
+    justify-content: center;
   }
   
   li {
-    float: left;
+    display: flex;
   }
   
   li a {
-    display: block;
+    display: flex;
     color: white;
     text-align: center;
     padding: 14px 16px;
