@@ -12,6 +12,8 @@
     <br><br>
     <link rel="stylesheet" href="style.css">   
     <div class="ciphers">
+
+    <div class="columns">
     <textarea name="mInput" id="messageInput" cols="50" rows="10" placeholder="Enter your message"></textarea>
     <br><br>
     <label>Shift:</label>
@@ -20,16 +22,33 @@
     <button type="button" onclick="displayDecrypt('caesarDecrypt')">Decrypt</button>
     <br>
     <label>Break Encryped Message (no shift required):</label>
+    <br>
+    <label>Note: Codebreaker may not be completely accurate,</label>
+    <br>
+    <label>and works best with longer messages</label>
     <br><br>
     <textarea name="bInput" id="breakInput" cols="50" rows="10" placeholder="Enter your message"></textarea>
     <br><br>
     <button type="button" onclick="displayBreak()">Break Encryption</button>
     <br><br>
-    </div>
-
     <div id="output"></div>
-
-    <div class="descriptions">This is a cool cipher wow grape</div>
-
+    </div>
+    
+    <div class="columns">
+    <br>
+    <div class="descriptions">
+      The Caesar Cipher is one of the earliest and most widely used ciphers in the world. 
+      The cipher is a substitution cipher that shifts each letter of a message by a fixed shift, 
+      so that the letter “L” with a shift of two would encrypt to “N”. This shifting process 
+      repeats for each letter in the message to produce the encrypted message. The cipher gets 
+      its name from the Roman general Julius Caesar, who used it to encrypt important messages. 
+      <br> <br>
+      This tool allows you to both encrypt and decrypt messages with a set shift, by shifting 
+      each letter forward by the inputted shift to encrypt, and backward to decrypt. The 
+      codebreaking algorithm uses a word bank of nearly 10,000 words, and compares potential 
+      shifts to the wordbank. Then, it determines the potential shift that decrypts the message 
+      in a manner which has the most matches with the word bank, breaking the encryption. 
+    </div>
+    </div>
   </body>
 </html>

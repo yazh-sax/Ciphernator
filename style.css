@@ -10,6 +10,14 @@
     align-items: center;
     font-size: 30px;
 }
+#output{
+  color:rgb(176, 50, 50);
+  padding: 5%;
+}
+.descriptions {
+  padding: 5%;
+  font-family: Georgia;
+}
 body {
   color: rgb(250, 250, 250);
   background-color: rgb(37, 38, 38);
@@ -30,14 +38,23 @@ button {
   font-size: 20px;
 }
 
-.descriptions {
-  float: left;
+
+.ciphers {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
   padding: 5%;
 }
 
-.ciphers {
-  float: left;
-  padding: 5%;
+.page {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 10px;
 }
 
 #navBar {

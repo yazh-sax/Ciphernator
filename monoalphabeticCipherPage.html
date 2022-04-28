@@ -9,21 +9,19 @@
     <link rel="stylesheet" href="style.css">
     <script src="ciphernator.js"></script>
     <div class="ciphers">
-
+    <div class="column">
     <textarea name="mInput" id="messageInput" cols="50" rows="10" placeholder="Enter your message"></textarea>
     <br><br>
-  
-
     <label>Enter encryption key:</label>
     <input type="text" id="decryptMessageKeyInput"><br><br>
-
     <button type="button" onclick="displayEncrypt('monoalphabeticEncrypt')">Encrypt</button>
     <button type="button" onclick="displayDecrypt('monoalphabeticDecrypt')">Decrypt</button>
-    <br><br>
-
-    </div>
     <div id="output"></div>
-
+    <br><br>
+  </div>
+  <div class="column">
     <div class="descriptions">This is a cool description</div>
+  </div>
+  </div>
   </body>
 </html>
